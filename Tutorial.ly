@@ -264,5 +264,8 @@ For player the section can be moved to listen
 
 \break for line breaks
 
+https://lilypond.org/doc/v2.23/Documentation/notation/chord-name-chart
+https://lilypond.org/doc/v2.23/Documentation/notation/displaying-chords
+
 %}
 %
