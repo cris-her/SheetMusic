@@ -1,8 +1,8 @@
-\version "$LILYPOND_VERSION"
+\version "2.25.17"
 \language "english"
 
 \header {
-  title = "Title" 
+  title = "Tune up" 
   tagline = #f
 }
 
@@ -29,7 +29,7 @@ upper = \relative c'' {
   \global
   \clef treble
   
-  c1 |
+  a2. g4 |
   \bar "|."
 }
 
@@ -48,25 +48,25 @@ upperPart = <<
 lowerPart = \new Staff \lower
 
 music = \new PianoStaff \with {
-    instrumentName = "Piano"
-    midiInstrument = "piano"
-  } <<
-    \upperPart
-    <<
-      \lowerPart
-    >>
+  instrumentName = "Piano"
+  midiInstrument = "piano"
+} <<
+  \upperPart
+  <<
+    \lowerPart
   >>
+>>
 
 musicAndAnalysis = \new PianoStaff \with {
-    instrumentName = "Piano"
-    midiInstrument = "piano"
-  } <<
-    \upperPart
-    <<
-      \lowerPart
-      \addlyrics \analysis
-    >>
+  instrumentName = "Piano"
+  midiInstrument = "piano"
+} <<
+  \upperPart
+  <<
+    \lowerPart
+    \addlyrics \analysis
   >>
+>>
 
 \score {
   \musicAndAnalysis

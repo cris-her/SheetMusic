@@ -162,7 +162,7 @@ Tools -> Snippets //docked
 }
 
 Use custom shortcut
-
+ctrl + backspace
 
 Convert selected pitches into Quintuplet
 \tuplet 5/4 {$SELECTION}
