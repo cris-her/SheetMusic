@@ -267,5 +267,30 @@ For player the section can be moved to listen
 https://lilypond.org/doc/v2.23/Documentation/notation/chord-name-chart
 https://lilypond.org/doc/v2.23/Documentation/notation/displaying-chords
 
+Common Jazz Chord Notations
+Major: c1 (C major)
+Minor: c:m1 (C minor)
+Dominant 7th: c:7 (C7)
+Major 7th: c:maj7 (Cmaj7)
+Minor 7th: c:m7 (Cm7)
+Half-Diminished (Minor 7 flat 5): c:m7.5- (Cm7♭5)
+Diminished: c:dim (Cdim or C°)
+Augmented: c:aug (Caug or C+)
+Suspended 4th: c:sus4 (Csus4)
+Suspended 2nd: c:sus2 (Csus2)
+9th Chord: c:9 (C9)
+Minor 9th: c:m9 (Cm9)
+Major 9th: c:maj9 (Cmaj9)
+Dominant 13th: c:13 (C13)
+Minor 13th: c:m13 (Cm13)
+Major 13th: c:maj13 (Cmaj13)
+c:13.9- | % C 13 flat 9
+
+https://lilypond.org/doc/v2.24/Documentation/notation/common-chord-modifiers
+
+\tweak color #(rgb-color 0.5 0 0.5) b % purple
+
+https://lilypond.org/doc/v2.25/Documentation/notation/lyrics-and-repeats
+
 %}
 %

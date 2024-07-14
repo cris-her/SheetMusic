@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>html-midi-player | Play and display MIDI files online</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/html-midi-player/assets/css/style.css?v='">
+    <script src="https://cdn.jsdelivr.net/combine/npm/tone@14.7.58,npm/@magenta/music@1.23.1/es6/core.js"></script>
+    <script src="https://cdn.jsdelivr.net/combine/npm/tone@14.7.58,npm/@magenta/music@1.23.1/es6/core.js,npm/focus-visible@5,npm/html-midi-player@1.5.0"></script>
+</head>
+<body>
+    <header class="page-header" role="banner">
+        <h1 class="project-name">html-midi-player</h1>
+        <h2 class="project-tagline">Play and display MIDI files on the web</h2>      
+    </header>
+
+    <main id="content" class="main-content" role="main">
+        <div>
+            <midi-visualizer type="piano-roll" id="mainVisualizer"></midi-visualizer>
+            <midi-player id="mainPlayer" sound-font="" visualizer="#mainVisualizer"></midi-player>
+        </div>
+
+        <section id="section3">
+            <h2>Custom player and visualizer style</h2>
+            <midi-player id="customPlayer" sound-font visualizer="#section3 midi-visualizer"></midi-player>
+            <midi-visualizer id="customVisualizer"></midi-visualizer>
+        </section>
+
+        <section id="section1">
+            <h2>1 player, 2 visualizers</h2>
+            <midi-visualizer id="pianoRollVisualizer1" type="piano-roll"></midi-visualizer>
+            <midi-visualizer id="staffVisualizer1" type="staff"></midi-visualizer>
+            <midi-player id="player1" sound-font visualizer="#section1 midi-visualizer"></midi-player>
+        </section>
+
+        <section id="section2">
+            <h2>2 players, 1 visualizer</h2>
+            <midi-player id="player2-1" sound-font visualizer="#section2 midi-visualizer"></midi-player>
+            <midi-player id="player2-2" sound-font visualizer="#section2 midi-visualizer"></midi-player>
+            <midi-visualizer id="visualizer2" type="piano-roll"></midi-visualizer>
+        </section>
+
+        <p>This is a demo for the <strong>html-midi-player</strong> package. For more information, see <a href="https://github.com/cifkao/html-midi-player" target="_blank">its GitHub repository</a>.</p>
+
+        <p>
+            <label for="midiFile">Load MIDI file:</label>
+            <input type="file" id="midiFile" name="midiFile" accept="audio/midi, audio/x-midi" />
+        </p>
+
+        <footer class="site-footer">
+            <span class="site-footer-owner"><a href="https://github.com/cifkao/html-midi-player">html-midi-player</a> is maintained by <a href="https://github.com/cifkao">Ondřej Cífka</a>.</span>
+            <span>The source code of this page is available <a href="https://github.com/cifkao/html-midi-player/tree/www">here</a>.</span>
+        </footer>
+    </main>
+
+    <script>
+        document.getElementById('midiFile').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const midiUrl = URL.createObjectURL(file);
+
+                document.getElementById('mainPlayer').setAttribute('src', midiUrl);
+                document.getElementById('mainVisualizer').setAttribute('src', midiUrl);
+
+                document.getElementById('customPlayer').setAttribute('src', midiUrl);
+                document.getElementById('customVisualizer').setAttribute('src', midiUrl);
+
+                document.getElementById('pianoRollVisualizer1').setAttribute('src', midiUrl);
+                document.getElementById('staffVisualizer1').setAttribute('src', midiUrl);
+                document.getElementById('player1').setAttribute('src', midiUrl);
+
+                document.getElementById('player2-1').setAttribute('src', midiUrl);
+                document.getElementById('player2-2').setAttribute('src', midiUrl);
+                document.getElementById('visualizer2').setAttribute('src', midiUrl);
+
+                // Load the MIDI files into the players
+                document.getElementById('mainPlayer').load();
+                document.getElementById('customPlayer').load();
+                document.getElementById('player1').load();
+                document.getElementById('player2-1').load();
+                document.getElementById('player2-2').load();
+            }
+        });
+    </script>
+
+    <style>
+        /* Custom player style */
+        #section3 midi-player {
+            display: block;
+            width: inherit;
+            margin: 4px;
+            margin-bottom: 0;
+        }
+        #section3 midi-player::part(control-panel) {
+            background: #ff5;
+            border: 2px solid #000;
+            border-radius: 10px 10px 0 0;
+        }
+        #section3 midi-player::part(play-button) {
+            color: #353;
+            border: 2px solid currentColor;
+            background-color: #4d4;
+            border-radius: 20px;
+            transition: all 0.2s;
+            content: 'hello';
+        }
+        #section3 midi-player::part(play-button):hover {
+            color: #0a0;
+            background-color: #5f5;
+            border-radius: 10px;
+        }
+        #section3 midi-player::part(time) {
+            font-family: monospace;
+        }
+
+        /* Custom visualizer style */
+        #section3 midi-visualizer .piano-roll-visualizer {
+            background: #ffd;
+            border: 2px solid black;
+            border-top: none;
+            border-radius: 0 0 10px 10px;
+            margin: 4px;
+            margin-top: 0;
+            overflow: auto;
+        }
+        #section3 midi-visualizer svg rect.note {
+            opacity: 0.6;
+            stroke-width: 2;
+        }
+        #section3 midi-visualizer svg rect.note[data-instrument="0"] {
+            fill: #e22;
+            stroke: #500;
+        }
+        #section3 midi-visualizer svg rect.note[data-instrument="2"] {
+            fill: #2ee;
+            stroke: #055;
+        }
+        #section3 midi-visualizer svg rect.note[data-is-drum="true"] {
+            fill: #888;
+            stroke: #888;
+        }
+        #section3 midi-visualizer svg rect.note.active {
+            opacity: 0.9;
+            stroke: #000;
+        }
+    </style>
+</body>
+</html>
